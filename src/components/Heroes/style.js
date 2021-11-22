@@ -15,6 +15,32 @@ font-family: 'Montserrat', sans-serif;
 font-size: 50px;
 color: white;
 `
+export const Div2 = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+align-items: center;
+width: 40%;
+`
+export const ButtonErased = styled.button`
+  cursor: pointer;
+  width: 150px;
+  height: 30px;
+  color: #fff;
+  background-color: blue;
+  @media(max-width:1000px){
+    width: 70px;
+  }
+`
+
+export const Img = styled.img`
+width: 80px;
+margin-bottom: 20px;
+@media(max-width:1000px){
+  margin-right: 10px;
+  margin-left: 10px;
+}
+`
 export const Input = styled.input`
 margin-bottom: 10px;
 width: 250px;
@@ -29,15 +55,16 @@ height:90% ;
 width: 90%;
 flex-wrap: wrap;
 `
-export const Div = styled.div`
+export const Div1 = styled.div`
+cursor: pointer;
 `
 export const Imagem = styled.img`
 width: 200px;
 height: 240px;
 transition: all 0.3s;
 :hover {
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
   position: relative;
   z-index: 5;
 } 
