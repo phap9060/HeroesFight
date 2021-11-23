@@ -15,5 +15,5 @@ The proposal was to use the API provided by the company to create a combat game 
 
 ### Steps to initialize project:
 
--1° run " npm install or yarn add "
--2° run " npm start or yarn run "
+- 1° run " npm install or yarn add "
+- 2° run " npm start or yarn run "
