@@ -5,9 +5,12 @@ export const Button = styled.button`
   width: 150px;
   height: 30px;
   color: #fff;
-  background-color: red;
+  background-color: #3333ff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
   @media (max-width: 1000px) {
-    width: 60px;
+    width: 70px;
   }
 `;
 export const Img = styled.img`

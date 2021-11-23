@@ -8,7 +8,7 @@ const Home = () => {
         <Texto1>Heroes Fight</Texto1>
         <Texto2>
           Do you wanna know whos gonna win this fight? Spider Man or Super Man?
-          Batman or Black Panther? Choose your heros and find out!!!
+          Batman or Black Panther? Choose your heroes and find out!!!
         </Texto2>
       </Image>
     </Fragment>

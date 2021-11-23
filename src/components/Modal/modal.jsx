@@ -50,37 +50,31 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function CustomizedDialogs() {
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const ctx = React.useContext(ModalContext);
 
   const handleClickOpen = () => {
     setOpen(true);
-    setLoading(true);
+    setLoading(false);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
 
-  const totalPower1 = () => {
-    let total =
-      ctx.power1[0][0] +
-      ctx.power1[0][1] +
-      ctx.power1[0][2] +
-      ctx.power1[0][3] +
-      ctx.power1[0][4] +
-      ctx.power1[0][5];
-    return total;
-  };
-  const totalPower2 = () => {
-    let total =
-      ctx.power2[0][0] +
-      ctx.power2[0][1] +
-      ctx.power2[0][2] +
-      ctx.power2[0][3] +
-      ctx.power2[0][4] +
-      ctx.power2[0][5];
-    return total;
+  const morePower = () => {
+    const total1 = Object.values(ctx.selectChamp[0].stats).reduce(
+      (a, b) => a + b
+    );
+    const total2 = Object.values(ctx.selectChamp[1].stats).reduce(
+      (a, b) => a + b
+    );
+    if (total1 > total2) {
+      return total1;
+    } else {
+      return total2;
+    }
   };
 
   return (
@@ -99,39 +93,29 @@ export default function CustomizedDialogs() {
         >
           FIGHT
         </BootstrapDialogTitle>
-        {loading && (
+        {!loading && ctx.selectChamp.length === 2 && (
           <DialogContent dividers>
-            <Typography gutterBottom>
-              <Div1>
-                <Img src={ctx.selectChamp[0]} />
-                <Ul>
-                  <Li>Intelligence:{ctx.power1[0][0]}</Li>
-                  <Li>Strength:{ctx.power1[0][1]}</Li>
-                  <Li>Speed:{ctx.power1[0][2]}</Li>
-                  <Li>Durability:{ctx.power1[0][3]}</Li>
-                  <Li>Power:{ctx.power1[0][4]}</Li>
-                  <Li>Combat:{ctx.power1[0][5]}</Li>
-                  <Li>TotalPower:{totalPower1()}</Li>
-                </Ul>
-                {totalPower1() > totalPower2() && <P> WINNER </P>}
-              </Div1>
-            </Typography>
-
-            <Typography gutterBottom>
-              <Div1>
-                <Img src={ctx.selectChamp[1]} />
-                <Ul>
-                  <Li>Intelligence:{ctx.power2[0][0]}</Li>
-                  <Li>Strength:{ctx.power2[0][1]}</Li>
-                  <Li>Speed:{ctx.power2[0][2]}</Li>
-                  <Li>Durability:{ctx.power2[0][3]}</Li>
-                  <Li>Power:{ctx.power2[0][4]}</Li>
-                  <Li>Combat:{ctx.power2[0][5]}</Li>
-                  <Li>TotalPower:{totalPower2()}</Li>
-                </Ul>
-                {totalPower1() < totalPower2() && <P> WINNER </P>}
-              </Div1>
-            </Typography>
+            {ctx.selectChamp.map((champion) => (
+              <Typography gutterBottom>
+                <Div1>
+                  <Img src={champion.image} />
+                  <Ul>
+                    {Object.keys(champion.stats).map((stats) => (
+                      <Li>
+                        {stats.charAt(0).toUpperCase() + stats.slice(1)}:{" "}
+                        {champion.stats[stats]}
+                      </Li>
+                    ))}
+                    <Li>
+                      TotalPower:{" "}
+                      {Object.values(champion.stats).reduce((a, b) => a + b)}
+                    </Li>
+                  </Ul>
+                  {Object.values(champion.stats).reduce((a, b) => a + b) ===
+                    morePower() && <P>WINNER</P>}
+                </Div1>
+              </Typography>
+            ))}
           </DialogContent>
         )}
         <DialogActions>
